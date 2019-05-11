@@ -16,13 +16,13 @@
       "user":"C",
       "x":5,
       "y":0,
-      "distance":1
+      "distance":5
     },
     {  
       "user":"D",
       "x":10,
       "y":0,
-      "distance":1
+      "distance":10
     }
   ],
   "links":[  
