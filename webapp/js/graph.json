@@ -3,17 +3,20 @@
     {  
       "user":"A",
       "x":0,
-      "y":0
+      "y":0,
+      "distance":0
     },
     {  
       "user":"B",
       "x":5,
-      "y":5
+      "y":5,
+      "distance":1
     },
     {  
       "user":"C",
       "x":5,
-      "y":0
+      "y":0,
+      "distance":1
     }
   ],
   "links":[  
