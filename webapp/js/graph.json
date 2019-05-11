@@ -17,6 +17,12 @@
       "x":5,
       "y":0,
       "distance":1
+    },
+    {  
+      "user":"D",
+      "x":10,
+      "y":0,
+      "distance":1
     }
   ],
   "links":[  
@@ -27,6 +33,10 @@
     {  
       "source":2,
       "target":0
+    },
+    {  
+      "source":2,
+      "target":3
     }
   ]
 }
