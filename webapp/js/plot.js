@@ -2,7 +2,7 @@ function selectableForceDirectedGraph() {
   var width = 1600,
     height = 720,
     shiftKey
-
+    firstTime = 0;
   var nodeGraph = null;
   var xScale = d3.scale
     .linear()
@@ -27,7 +27,7 @@ function selectableForceDirectedGraph() {
 
   var zoomer = d3.behavior
     .zoom()
-    .scaleExtent([0.1, 10])
+    .scaleExtent([0.0, 10])
     .x(xScale)
     .y(yScale)
     .on("zoomstart", zoomstart)
@@ -82,10 +82,8 @@ function selectableForceDirectedGraph() {
     .attr("width", width)
     .attr("height", height)
     .attr("fill", "transparent")
-    //.attr('opacity', 0.5)
     .attr("stroke", "transparent")
     .attr("stroke-width", 1)
-    //.attr("pointer-events", "all")
     .attr("id", "zrect");
 
   var brush = svg_graph
@@ -101,7 +99,7 @@ function selectableForceDirectedGraph() {
     .attr("fill", "red")
     .attr("stroke", "black")
     .attr("stroke-width", 1)
-    .attr("opacity", 0.5)
+    .attr("opacity", 0.7)
     .attr("id", "vis");
 
   brush
@@ -201,7 +199,7 @@ function selectableForceDirectedGraph() {
   }
 
   d3.json(
-    "\graph.json",
+    "https://raw.githubusercontent.com/jhellenkamp/hacktival2019/master/webapp/js/graph.json",
     function(error, graph) {
       nodeGraph = graph;
 
@@ -274,10 +272,14 @@ function selectableForceDirectedGraph() {
 
         force.resume();
       }
+      var colorScale = d3.scale.linear().domain([0, 10]).range([0, 255]);;
       node = node
         .data(graph.nodes)
         .enter()
         .append("circle")
+        .attr("fill", function(d) {
+            return d3.rgb(255-colorScale(d.distance), 0, colorScale(d.distance))
+        })
         .attr("r", 4)
         .attr("cx", function(d) {
           return d.x;
@@ -316,6 +318,7 @@ function selectableForceDirectedGraph() {
             .on("dragend", dragended)
         );
 
+      
       function tick() {
         link
           .attr("x1", function(d) {
@@ -338,6 +341,16 @@ function selectableForceDirectedGraph() {
           .attr("cy", function(d) {
             return d.y;
           });
+
+
+          if(firstTime == 2) {
+            console.log("Test");  
+            center_view();
+          } else if(firstTime < 2){
+            firstTime++;
+          }
+       
+         
       }
 
       force.on("tick", tick);
