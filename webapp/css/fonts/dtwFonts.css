@@ -1,0 +1,31 @@
+﻿/* @font-face kit by Fonts2u (https://fonts2u.com) */ 
+@font-face {
+    font-family:"Linux Biolinum Capitals";
+    src:url("LinBiolinum_aS.eot?") format("eot"),
+        url("LinBiolinum_aS.woff") format("woff"),
+        url("LinBiolinum_aS.ttf") format("truetype"),
+        url("LinBiolinum_aS.svg#LinBiolinumCapitals") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:"Linux Libertine";
+    src:url("LinLibertine_R.eot?") format("eot"),
+        url("LinLibertine_R.woff") format("woff"),
+        url("LinLibertine_R.ttf") format("truetype"),
+        url("LinLibertine_R.svg#LinLibertine") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
+
+/* @font-face kit by Fonts2u (https://fonts2u.com) */ 
+@font-face {
+    font-family:"Linux Libertine Bold";
+    src:url("LinLibertine_RB.eot?") format("eot"),
+        url("LinLibertine_RB.woff") format("woff"),
+        url("LinLibertine_RB.ttf") format("truetype"),
+        url("LinLibertine_RB.svg#LinLibertineB") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
