@@ -1,24 +1,111 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-.node .selected {
-  stroke: black;
-}
-.link {
-  stroke: #999;
-}
-.brush .extent {
-  fill-opacity: .1;
-  stroke: #fff;
-  shape-rendering: crispEdges;
-}
-</style>
+<meta charset="utf-8" />
+<head>
+  <style>
+    .node {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+    .node .selected {
+      stroke: black;
+    }
+    .link {
+      stroke: #999;
+    }
+    .brush .extent {
+      fill-opacity: 0.1;
+      stroke: #fff;
+      shape-rendering: crispEdges;
+    }
+    #d3_selectable_force_directed_graph {
+      position: fixed;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+    }
+    .overlay_bottom_left {
+      position: fixed;
+      left: 40px;
+      bottom: 20px;
+    }
+    .overlay_bottom_right {
+      position: fixed;
+      right: 40px;
+      bottom: 20px;
+    }
+    .overlay_top_right {
+      position: fixed;
+      right: 40px;
+      top: 20%;
+    }
+    .heading {
+      text-align: center;
+      padding-top: 20px;
+    }
+  </style>
+  <title>Twitter Bubble</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
 <body>
-    <div align='center' id="d3_selectable_force_directed_graph"></div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="js/plot.js"></script>
-<script>selectableForceDirectedGraph();</script>
+  <div
+    align="center"
+    id="d3_selectable_force_directed_graph"
+    width="100%"
+    height="100%"
+  ></div>
+  <div class="overlay_bottom_left">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">bubbleness</th>
+          <td>2%</td>
+        </tr>
+        <tr>
+          <th scope="row">bounces</th>
+          <td>15</td>
+        </tr>
+        <tr>
+          <th scope="row">balls</th>
+          <td>50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="overlay_bottom_right">
+    <p class="mt-5 mb-3 text-muted">Made with ❤️ at Hacktival 2019</p>
+  </div>
+  <div class="overlay_top_right">
+    <table class="table">
+      <thead>
+          <th>recommendations</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>@g0d</td>
+        </tr>
+        <tr>
+          <td>@0rbit</td>
+        </tr>
+        <tr>
+          <td>@ElektronikNeo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="heading">
+    <h1 id="title">
+      bubble analysis for @</h1>
+  </div>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="js/plot.js"></script>
+  <script>
+    document.getElementById("title").innerHTML += window.location.search
+      .substr(1)
+      .split("=")[1]
+      .replace("%40", "");
+    selectableForceDirectedGraph();
+  </script>
+</body>

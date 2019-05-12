@@ -1,6 +1,6 @@
 function selectableForceDirectedGraph() {
-  var width = 1600,
-    height = 720,
+  var width = document.getElementById("d3_selectable_force_directed_graph").clientWidth,
+    height = document.getElementById("d3_selectable_force_directed_graph").clientHeight,
     shiftKey
     firstTime = 0;
   var nodeGraph = null;
@@ -212,6 +212,12 @@ function selectableForceDirectedGraph() {
         .data(graph.links)
         .enter()
         .append("line")
+        .attr("stroke", function(d) {
+            if(d.marked) {
+                return d3.rgb(255, 0, 0)
+            }
+            return d3.rgb(128, 128, 128)
+        })
         .attr("x1", function(d) {
           return d.source.x;
         })
@@ -272,15 +278,32 @@ function selectableForceDirectedGraph() {
 
         force.resume();
       }
-      var colorScale = d3.scale.linear().domain([0, 10]).range([0, 255]);;
+      var colorScale = d3.scale.linear().domain([0, 4]).range([0, 255]);;
       node = node
         .data(graph.nodes)
         .enter()
         .append("circle")
         .attr("fill", function(d) {
+            if(d.id == 50503396) {
+                return d3.rgb(255, 255, 0);
+            }
+            if(d.proposed == "True") {
+                return d3.rgb(0,255,0);
+            }
             return d3.rgb(255-colorScale(d.distance), 0, colorScale(d.distance))
         })
-        .attr("r", 4)
+        .attr("r", function(d) {
+            if(d.id == 50503396) {
+                return 30
+            }
+            if(d.proposed == "True") {
+                return 30
+            }
+            if(d.distance == 0) {
+                return 15
+            }
+            return 5
+        })
         .attr("cx", function(d) {
           return d.x;
         })
@@ -343,12 +366,7 @@ function selectableForceDirectedGraph() {
           });
 
 
-          if(firstTime == 2) {
-            console.log("Test");  
-            center_view();
-          } else if(firstTime < 2){
-            firstTime++;
-          }
+        
        
          
       }
